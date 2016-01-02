@@ -10,7 +10,6 @@ import com.archon.mapper.UserRowMapper;
 public class JdbcUserRepository implements UserRepository {
 
 	private JdbcTemplate jdbcTemplate;
-	private UserRowMapper userRowMapper;
 	
 	List<User> listUser;
 	List<User> listUser1;
@@ -23,12 +22,8 @@ public class JdbcUserRepository implements UserRepository {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	public void setUserRowMapper(UserRowMapper userRowMapper) {
-		this.userRowMapper = userRowMapper;
-	}
-	
 	public List<User> getAllUser() {
-		listUser = jdbcTemplate.query(sqlGetAllUser, userRowMapper);		
+		listUser = jdbcTemplate.query(sqlGetAllUser,new UserRowMapper());		
 		
 		return listUser;
 	}

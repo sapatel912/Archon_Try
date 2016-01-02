@@ -11,10 +11,6 @@ public class UserRowMapper implements RowMapper<User> {
 	
 	private User user;
 	
-	/*public void setUser(User user) {
-		this.user = user;
-	}*/
-	
 	@Override
 	public User mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 		System.out.println("r_no: " + rowNum + ", user_id: " + resultSet.getInt("user_id"));

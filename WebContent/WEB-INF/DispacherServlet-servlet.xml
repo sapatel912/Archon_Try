@@ -15,8 +15,10 @@
    	
    
 	  <context:component-scan base-package="com.archon" />
-	
-	  <mvc:annotation-driven />
+	  
+	  <mvc:resources mapping="/resources/**" location="/resources/login/"  
+		cache-period="31556926"/>
+	  <mvc:annotation-driven/>
 	  
 	  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	     <property name="prefix" value="/WEB-INF/jsp/" />
@@ -38,14 +40,9 @@
 	 <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate" >
 	 		<constructor-arg type="javax.sql.DataSource" ref="driverManagerDataSource" />
 	 </bean>
-	 
-	 <bean class="com.archon.repository.UserRowMapper" id="userRowMapper">
-	
-	 </bean> 
 		
-	 <bean class="com.archon.repository.JdbcUserRepository" id="jdbcUserRepository">
-		<property name="jdbcTemplate" ref="jdbcTemplate" />
-		<property name="userRowMapper" ref="userRowMapper" />		
+	 <bean id="jdbcUserRepository" class="com.archon.repository.JdbcUserRepository">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />		
 	 </bean> 
 	 	 
 	 <bean class="com.archon.controller.UserController" id="userController">
